@@ -12,7 +12,11 @@
     "dev": "ts-node --esm src/index.ts",
     "test": "node test-mcp.js",
     "generate-dxt": "npm run build && node generate-dxt.js",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "docker:build": "docker build -t obsidian-mcp .",
+    "docker:run": "docker-compose up -d",
+    "docker:stop": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
   },
   "keywords": [
     "obsidian",

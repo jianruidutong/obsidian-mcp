@@ -55,7 +55,7 @@ Breaking Changes:
 # Set up remote repository
 echo "🔗 Setting up remote repository..."
 git branch -M main
-git remote add origin https://github.com/newtype-01/obsidian-mcp.git
+git remote add origin https://github.com/jianruidutong/obsidian-mcp.git
 
 # Push to repository
 echo "⬆️ Pushing to GitHub..."
@@ -66,7 +66,7 @@ echo ""
 echo "✅ Repository setup complete!"
 echo ""
 echo "📋 Next Steps:"
-echo "1. Go to https://github.com/newtype-01/obsidian-mcp"
+echo "1. Go to https://github.com/jianruidutong/obsidian-mcp"
 echo "2. Verify all files are uploaded correctly"
 echo "3. Update repository description and topics"
 echo "4. Enable GitHub Pages if needed"

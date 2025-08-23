@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  obsidian-mcp:
+    build: .
+    container_name: obsidian-mcp-server
+    restart: unless-stopped
+    network_mode: "host"
+    environment:
+      - NODE_ENV=production
+      - OBSIDIAN_VAULT_PATH=${OBSIDIAN_VAULT_PATH}
+      - OBSIDIAN_API_TOKEN=${OBSIDIAN_API_TOKEN}
+      - OBSIDIAN_API_PORT=${OBSIDIAN_API_PORT:-27123}
+    volumes:
+      # 挂载Obsidian知识库到容器
+      - ${OBSIDIAN_VAULT_PATH}:${OBSIDIAN_VAULT_PATH}
+    depends_on: []
+    # 健康检查
+    healthcheck:
+      test: ["CMD", "node", "--version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

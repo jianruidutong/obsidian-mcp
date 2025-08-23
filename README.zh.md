@@ -1,23 +1,24 @@
-# 增强版 Obsidian MCP 服务器 - 25个高级AI工具
+# Obsidian MCP (Model Context Protocol) 服务器 - 增强版
 
-[![npm version](https://badge.fury.io/js/@jianruidutong%2Fobsidian-mcp.svg)](https://badge.fury.io/js/@jianruidutong%2Fobsidian-mcp)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/badge/Node.js-%E2%89%A516.0.0-brightgreen)](https://nodejs.org/)
+[English](./README.md) | 中文 | [📚 完整安装指南](./COMPLETE_GUIDE.md)
 
-[English](./README.md) | [中文](./README.zh.md) | [安装指南](./INSTALLATION.md)
+这个项目实现了一个增强版 Model Context Protocol (MCP) 服务器，用于连接 AI 模型与 Obsidian 知识库。通过这个服务器，AI 模型可以直接访问和操作 Obsidian 笔记，包括读取、创建、更新和删除笔记，以及管理文件夹结构。
 
-## 🚀 项目概述
+**增强版特色：在原有10个基础工具基础上，新增15个AI智能工具，总共提供25个强大功能。**
 
-**增强版 Obsidian MCP 服务器**是一个强大的模型上下文协议(MCP)服务器，为AI模型与Obsidian知识库提供无缝集成。此增强版本包含**25个高级工具**，支持智能知识管理、自动内容分析和智能链接功能。
+## 功能特点
 
-### ✨ v2.0.0 新特性
-- 🧠 **15个全新AI增强工具**，用于智能内容分析
-- 🔗 **智能自动链接**，具备高级模式识别功能
-- 📊 **知识图谱生成**，可视化笔记关系
-- 🏷️ **高级标签管理**，包含智能推荐功能
-- 📝 **模板系统**，用于一致的笔记创建
-- 🔍 **内容相似度分析**，基于TF-IDF和余弦相似度
-- 📈 **关系分析**，发现隐藏的连接
+- 与 Obsidian 知识库的无缝集成
+- 支持笔记的读取、创建、更新和删除
+- 支持文件夹的创建、重命名、移动和删除
+- 支持全文搜索功能
+- 🆕 智能自动链接 - 自动检测笔记名称并转换为 wikilink
+- 🆕 高级标签管理 - AI驱动的标签推荐和批量标签操作
+- 🆕 模板系统 - 支持变量替换的动态模板创建和应用
+- 🆕 AI内容分析 - TF-IDF关键词提取、智能摘要、相似度分析
+- 🆕 知识图谱生成 - 导出可视化就绪的图谱数据
+- 🆕 关系分析 - 发现笔记间的隐藏连接和孤立内容
+- 符合 Model Context Protocol 规范
 
 ## 🛠️ 完整工具套件（25个工具）
 
@@ -92,11 +93,49 @@ npm run build
 npm start
 ```
 
+### 方案3：Docker安装
+
+#### 使用 Docker Compose（推荐）
+```bash
+# 1. 复制环境配置文件
+cp .env.example .env
+
+# 2. 编辑 .env 文件，填入你的实际配置
+nano .env
+
+# 3. 构建并启动容器
+docker-compose up -d
+```
+
+.env 文件示例：
+```bash
+OBSIDIAN_VAULT_PATH=/path/to/your/vault
+OBSIDIAN_API_TOKEN=your_api_token_here
+OBSIDIAN_API_PORT=27123
+```
+
+#### 使用 Docker 命令
+```bash
+# 1. 构建 Docker 镜像
+docker build -t obsidian-mcp .
+
+# 2. 运行容器
+docker run -d \
+  --name obsidian-mcp \
+  --network host \
+  -e OBSIDIAN_VAULT_PATH=/path/to/your/vault \
+  -e OBSIDIAN_API_TOKEN=your_token \
+  -e OBSIDIAN_API_PORT=27123 \
+  -v /path/to/your/vault:/path/to/your/vault \
+  obsidian-mcp
+```
+
 ## ⚙️ 配置
 
 ### MCP客户端配置
 在你的MCP客户端配置文件中添加：
 
+#### NPM/npx 方式
 ```json
 {
   "mcpServers": {
@@ -115,12 +154,52 @@ npm start
 }
 ```
 
+#### 本地源码方式
+```json
+{
+  "mcpServers": {
+    "obsidian-mcp": {
+      "command": "node",
+      "args": [
+        "/path/to/obsidian-mcp/build/index.js"
+      ],
+      "env": {
+        "OBSIDIAN_VAULT_PATH": "/path/to/your/vault",
+        "OBSIDIAN_API_TOKEN": "your_api_token",
+        "OBSIDIAN_API_PORT": "27123"
+      }
+    }
+  }
+}
+```
+
+#### Docker 方式
+```json
+{
+  "mcpServers": {
+    "obsidian-mcp": {
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "obsidian-mcp-server",
+        "npm",
+        "start"
+      ],
+      "env": {
+        // Docker容器已通过.env文件或环境变量配置，此处可以保留为空
+      }
+    }
+  }
+}
+```
+
 ### 环境变量
 | 变量名 | 描述 | 必需 | 默认值 |
 |--------|------|------|--------|
 | `OBSIDIAN_VAULT_PATH` | Obsidian知识库路径 | ✅ 是 | - |
 | `OBSIDIAN_API_TOKEN` | 本地REST API令牌 | ✅ 是 | - |
-| `OBSIDIAN_API_PORT` | API端口号 | ❌ 否 | 27123 |
+| `OBSIDIAN_API_PORT` | API端口号 | 🔧 建议 | 27123 |
 
 ## 📋 先决条件
 
@@ -135,136 +214,6 @@ npm start
 3. 记录端口号（默认：27123）
 4. 确保插件已启用
 
-## 🔧 高级使用示例
-
-### 📄 基础笔记操作
-```javascript
-// 列出特定文件夹中的所有笔记
-const notes = await mcp.call('list_notes', {
-  folder: 'projects/web-development'
-});
-
-// 读取指定笔记
-const noteContent = await mcp.call('read_note', {
-  path: 'daily/2024-01-15.md'
-});
-
-// 创建新笔记
-await mcp.call('create_note', {
-  path: 'ideas/new-project-idea.md',
-  content: '# 新项目想法\n\n这是一个很棒的想法...'
-});
-
-// 更新现有笔记内容
-await mcp.call('update_note', {
-  path: 'daily/2024-01-15.md',
-  edits: [
-    {
-      type: 'replace',
-      search: '旧文本',
-      replace: '新的更新文本'
-    }
-  ]
-});
-
-// 移动/重命名笔记
-await mcp.call('move_note', {
-  sourcePath: 'old-location/note.md',
-  destinationPath: 'new-location/renamed-note.md'
-});
-```
-
-### 📁 文件夹管理
-```javascript
-// 创建新的文件夹结构
-await mcp.call('manage_folder', {
-  operation: 'create',
-  path: 'projects/new-project/docs'
-});
-
-// 在整个知识库中搜索
-const searchResults = await mcp.call('search_vault', {
-  query: '机器学习'
-});
-```
-
-### 🏷️ 标签操作
-```javascript
-// 为笔记添加标签
-await mcp.call('add_tags', {
-  path: 'projects/web-app.md',
-  tags: ['#project', '#web-development', '#javascript']
-});
-
-// 列出所有标签及使用统计
-const tags = await mcp.call('list_tags', {
-  sortBy: 'count',
-  limit: 50
-});
-
-// 按指定标签查找笔记
-const taggedNotes = await mcp.call('search_by_tags', {
-  tags: ['project', 'web-development'],
-  operator: 'AND'
-});
-```
-
-### 智能自动链接
-```javascript
-// 自动检测并链接整个知识库中的笔记名称
-await mcp.call('auto_backlink_vault', {
-  dryRun: false,
-  caseSensitive: false,
-  wholeWords: true,
-  minLength: 3,
-  excludePatterns: ['templates/*', 'archive/*']
-});
-```
-
-### 知识图谱生成
-```javascript
-// 生成可视化就绪的知识图谱数据
-const graph = await mcp.call('generate_knowledge_graph', {
-  format: 'cytoscape',
-  includeOrphans: false
-});
-```
-
-### AI内容分析
-```javascript
-// 提取关键词并查找相似内容
-const keywords = await mcp.call('extract_keywords', {
-  path: 'my-note.md',
-  maxKeywords: 10
-});
-
-const similar = await mcp.call('find_similar_notes', {
-  path: 'my-note.md',
-  threshold: 0.3,
-  maxResults: 5
-});
-```
-
-### 模板使用
-```javascript
-// 创建和应用模板
-await mcp.call('create_template', {
-  name: 'meeting-notes',
-  content: '# {{title}}\n\n日期：{{date}}\n参与者：{{attendees}}\n\n## 议程\n\n## 笔记\n\n## 行动项\n',
-  variables: ['title', 'date', 'attendees']
-});
-
-await mcp.call('apply_template', {
-  templateName: 'meeting-notes',
-  notePath: 'meetings/2024-01-15.md',
-  variables: {
-    title: '周例会',
-    date: '2024-01-15',
-    attendees: 'Alice, Bob, Charlie'
-  }
-});
-```
-
 ## 🧪 测试
 
 测试你的安装：
@@ -275,6 +224,39 @@ npm test
 # 测试特定功能
 node test-mcp.js
 ```
+
+## 支持的工具
+
+MCP 服务器提供以下工具：
+
+**基础笔记管理：**
+- `list_notes`: 列出知识库中的所有笔记
+- `read_note`: 读取指定笔记的内容
+- `read_multiple_notes`: 批量读取多个笔记内容
+- `create_note`: 创建新笔记
+- `update_note`: 更新现有笔记
+- `delete_note`: 删除笔记
+- `move_note`: 移动/重命名笔记
+- `manage_folder`: 管理文件夹 (创建、重命名、移动、删除)
+- `search_vault`: 在知识库中搜索内容
+
+**AI增强功能：**
+- `auto_backlink_vault`: 智能自动链接检测
+- `add_tags`: 添加标签到笔记
+- `list_tags`: 列出所有标签及统计
+- `search_by_tags`: 基于标签搜索
+- `create_template`: 创建笔记模板
+- `list_templates`: 列出可用模板
+- `apply_template`: 应用模板创建笔记
+- `delete_template`: 删除模板
+- `extract_keywords`: TF-IDF关键词提取
+- `generate_summary`: 生成内容摘要
+- `suggest_tags`: AI标签推荐
+- `find_similar_notes`: 查找相似笔记
+- `analyze_note_relationships`: 分析笔记关系
+- `generate_knowledge_graph`: 生成知识图谱
+- `find_orphan_notes`: 查找孤立笔记
+- `suggest_connections`: 推荐潜在连接
 
 ## 📚 文档
 

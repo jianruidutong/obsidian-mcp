@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/Node.js-%E2%89%A516.0.0-brightgreen)](https://nodejs.org/)
 
-[English](./README.md) | [中文](./README.zh.md) | [Installation Guide](./INSTALLATION.md)
+[English](./README.md) | [中文](./README.zh.md) | [📚 Complete Installation Guide](./COMPLETE_GUIDE.md)
 
 ## 🚀 Overview
 
@@ -92,6 +92,43 @@ npm run build
 npm start
 ```
 
+### Option 3: Docker Installation
+
+#### Using Docker Compose (Recommended)
+```bash
+# 1. Copy environment configuration file
+cp .env.example .env
+
+# 2. Edit .env file with your actual configuration
+nano .env
+
+# 3. Build and start container
+docker-compose up -d
+```
+
+.env file example:
+```bash
+OBSIDIAN_VAULT_PATH=/path/to/your/vault
+OBSIDIAN_API_TOKEN=your_api_token_here
+OBSIDIAN_API_PORT=27123
+```
+
+#### Using Docker Commands
+```bash
+# 1. Build Docker image
+docker build -t obsidian-mcp .
+
+# 2. Run container
+docker run -d \
+  --name obsidian-mcp \
+  --network host \
+  -e OBSIDIAN_VAULT_PATH=/path/to/your/vault \
+  -e OBSIDIAN_API_TOKEN=your_token \
+  -e OBSIDIAN_API_PORT=27123 \
+  -v /path/to/your/vault:/path/to/your/vault \
+  obsidian-mcp
+```
+
 ## ⚙️ Configuration
 
 ### MCP Client Configuration
@@ -120,7 +157,7 @@ Add to your MCP client configuration file:
 |----------|-------------|----------|---------|
 | `OBSIDIAN_VAULT_PATH` | Path to your Obsidian vault | ✅ Yes | - |
 | `OBSIDIAN_API_TOKEN` | Local REST API token | ✅ Yes | - |
-| `OBSIDIAN_API_PORT` | API port number | ❌ No | 27123 |
+| `OBSIDIAN_API_PORT` | API port number | 🔧 Recommended | 27123 |
 
 ## 📋 Prerequisites
 
@@ -134,136 +171,6 @@ Add to your MCP client configuration file:
 2. Generate an API token in the plugin settings
 3. Note the port number (default: 27123)
 4. Ensure the plugin is enabled
-
-## 🔧 Advanced Usage Examples
-
-### 📄 Basic Note Operations
-```javascript
-// List all notes in a specific folder
-const notes = await mcp.call('list_notes', {
-  folder: 'projects/web-development'
-});
-
-// Read a specific note
-const noteContent = await mcp.call('read_note', {
-  path: 'daily/2024-01-15.md'
-});
-
-// Create a new note
-await mcp.call('create_note', {
-  path: 'ideas/new-project-idea.md',
-  content: '# New Project Idea\n\nThis is a great idea for...'
-});
-
-// Update existing note content
-await mcp.call('update_note', {
-  path: 'daily/2024-01-15.md',
-  edits: [
-    {
-      type: 'replace',
-      search: 'old text',
-      replace: 'new updated text'
-    }
-  ]
-});
-
-// Move/rename a note
-await mcp.call('move_note', {
-  sourcePath: 'old-location/note.md',
-  destinationPath: 'new-location/renamed-note.md'
-});
-```
-
-### 📁 Folder Management
-```javascript
-// Create a new folder structure
-await mcp.call('manage_folder', {
-  operation: 'create',
-  path: 'projects/new-project/docs'
-});
-
-// Search across entire vault
-const searchResults = await mcp.call('search_vault', {
-  query: 'machine learning'
-});
-```
-
-### 🏷️ Tag Operations
-```javascript
-// Add tags to a note
-await mcp.call('add_tags', {
-  path: 'projects/web-app.md',
-  tags: ['#project', '#web-development', '#javascript']
-});
-
-// List all tags with usage statistics
-const tags = await mcp.call('list_tags', {
-  sortBy: 'count',
-  limit: 50
-});
-
-// Find notes by specific tags
-const taggedNotes = await mcp.call('search_by_tags', {
-  tags: ['project', 'web-development'],
-  operator: 'AND'
-});
-```
-
-### Smart Auto-Linking
-```javascript
-// Automatically detect and link note names throughout your vault
-await mcp.call('auto_backlink_vault', {
-  dryRun: false,
-  caseSensitive: false,
-  wholeWords: true,
-  minLength: 3,
-  excludePatterns: ['templates/*', 'archive/*']
-});
-```
-
-### Knowledge Graph Generation
-```javascript
-// Generate visualization-ready knowledge graph data
-const graph = await mcp.call('generate_knowledge_graph', {
-  format: 'cytoscape',
-  includeOrphans: false
-});
-```
-
-### AI Content Analysis
-```javascript
-// Extract keywords and find similar content
-const keywords = await mcp.call('extract_keywords', {
-  path: 'my-note.md',
-  maxKeywords: 10
-});
-
-const similar = await mcp.call('find_similar_notes', {
-  path: 'my-note.md',
-  threshold: 0.3,
-  maxResults: 5
-});
-```
-
-### Template Usage
-```javascript
-// Create and apply templates
-await mcp.call('create_template', {
-  name: 'meeting-notes',
-  content: '# {{title}}\n\nDate: {{date}}\nAttendees: {{attendees}}\n\n## Agenda\n\n## Notes\n\n## Action Items\n',
-  variables: ['title', 'date', 'attendees']
-});
-
-await mcp.call('apply_template', {
-  templateName: 'meeting-notes',
-  notePath: 'meetings/2024-01-15.md',
-  variables: {
-    title: 'Weekly Team Meeting',
-    date: '2024-01-15',
-    attendees: 'Alice, Bob, Charlie'
-  }
-});
-```
 
 ## 🧪 Testing
 
