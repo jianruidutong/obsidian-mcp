@@ -236,17 +236,6 @@ For Docker deployment:
 3. Note the port number (default: 27123)
 4. Ensure the plugin is enabled
 
-## 🧪 Testing
-
-Test your installation:
-```bash
-# Run the test suite
-npm test
-
-# Test specific functionality
-node test-mcp.js
-```
-
 ## 📚 Documentation
 
 - [📖 Complete Installation Guide](./INSTALLATION.md)

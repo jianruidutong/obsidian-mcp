@@ -10,7 +10,6 @@
     "build": "tsc && chmod +x build/index.js",
     "start": "node build/index.js",
     "dev": "ts-node --esm src/index.ts",
-    "test": "node test-mcp.js",
     "generate-dxt": "npm run build && node generate-dxt.js",
     "prepublishOnly": "npm run build",
     "docker:build": "docker build -t obsidian-mcp .",
