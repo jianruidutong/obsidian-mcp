@@ -76,15 +76,20 @@
 ## 🚀 快速开始
 
 ### 方案1：NPM安装（推荐）
-```bash
-# 全局安装
-npm install -g @jianruidutong/obsidian-mcp
 
-# 或使用npx（无需安装）
+**全局安装：**
+```bash
+npm install -g @jianruidutong/obsidian-mcp
+```
+
+**或使用npx（无需安装）：**
+```bash
 npx @jianruidutong/obsidian-mcp
 ```
 
 ### 方案2：从源码安装
+
+**克隆并构建：**
 ```bash
 git clone https://github.com/jianruidutong/obsidian-mcp.git
 cd obsidian-mcp
@@ -96,14 +101,21 @@ npm start
 ### 方案3：Docker安装
 
 #### 使用 Docker Compose（推荐）
+
+**克隆项目：**
 ```bash
-# 1. 复制环境配置文件
+git clone https://github.com/jianruidutong/obsidian-mcp.git
+cd obsidian-mcp
+```
+
+**配置环境变量：**
+```bash
 cp .env.example .env
-
-# 2. 编辑 .env 文件，填入你的实际配置
 nano .env
+```
 
-# 3. 构建并启动容器
+**启动容器：**
+```bash
 docker-compose up -d
 ```
 
@@ -115,11 +127,14 @@ OBSIDIAN_API_PORT=27123
 ```
 
 #### 使用 Docker 命令
-```bash
-# 1. 构建 Docker 镜像
-docker build -t obsidian-mcp .
 
-# 2. 运行容器
+**构建镜像：**
+```bash
+docker build -t obsidian-mcp .
+```
+
+**运行容器：**
+```bash
 docker run -d \
   --name obsidian-mcp \
   --network host \
@@ -133,15 +148,17 @@ docker run -d \
 ## ⚙️ 配置
 
 ### MCP客户端配置
+
+#### 方案1：NPM安装配置
 在你的MCP客户端配置文件中添加：
 
-#### NPM/npx 方式
 ```json
 {
   "mcpServers": {
     "obsidian-mcp": {
       "command": "npx",
       "args": [
+        "-y",
         "@jianruidutong/obsidian-mcp"
       ],
       "env": {
@@ -154,7 +171,9 @@ docker run -d \
 }
 ```
 
-#### 本地源码方式
+#### 方案2：本地源码安装配置
+用于本地源码安装：
+
 ```json
 {
   "mcpServers": {
@@ -173,7 +192,9 @@ docker run -d \
 }
 ```
 
-#### Docker 方式
+#### 方案3：Docker安装配置
+用于Docker部署：
+
 ```json
 {
   "mcpServers": {
@@ -187,12 +208,14 @@ docker run -d \
         "start"
       ],
       "env": {
-        // Docker容器已通过.env文件或环境变量配置，此处可以保留为空
+        "NODE_ENV": "production"
       }
     }
   }
 }
 ```
+
+**注意：** Docker配置中，环境变量通过`.env`文件或`docker-compose.yml`在容器中设置。
 
 ### 环境变量
 | 变量名 | 描述 | 必需 | 默认值 |
@@ -216,12 +239,13 @@ docker run -d \
 
 ## 🧪 测试
 
-测试你的安装：
+**运行测试套件：**
 ```bash
-# 运行测试套件
 npm test
+```
 
-# 测试特定功能
+**测试特定功能：**
+```bash
 node test-mcp.js
 ```
 

@@ -75,15 +75,20 @@ The **Enhanced Obsidian MCP Server** is a powerful Model Context Protocol (MCP) 
 ## 🚀 Quick Start
 
 ### Option 1: NPM Installation (Recommended)
-```bash
-# Install globally
-npm install -g @jianruidutong/obsidian-mcp
 
-# Or use npx (no installation required)
+**Install globally:**
+```bash
+npm install -g @jianruidutong/obsidian-mcp
+```
+
+**Or use npx (no installation required):**
+```bash
 npx @jianruidutong/obsidian-mcp
 ```
 
 ### Option 2: From Source
+
+**Clone and build:**
 ```bash
 git clone https://github.com/jianruidutong/obsidian-mcp.git
 cd obsidian-mcp
@@ -95,14 +100,21 @@ npm start
 ### Option 3: Docker Installation
 
 #### Using Docker Compose (Recommended)
+
+**Clone the project:**
 ```bash
-# 1. Copy environment configuration file
+git clone https://github.com/jianruidutong/obsidian-mcp.git
+cd obsidian-mcp
+```
+
+**Configure environment:**
+```bash
 cp .env.example .env
-
-# 2. Edit .env file with your actual configuration
 nano .env
+```
 
-# 3. Build and start container
+**Start container:**
+```bash
 docker-compose up -d
 ```
 
@@ -114,11 +126,14 @@ OBSIDIAN_API_PORT=27123
 ```
 
 #### Using Docker Commands
-```bash
-# 1. Build Docker image
-docker build -t obsidian-mcp .
 
-# 2. Run container
+**Build Docker image:**
+```bash
+docker build -t obsidian-mcp .
+```
+
+**Run container:**
+```bash
 docker run -d \
   --name obsidian-mcp \
   --network host \
@@ -132,6 +147,8 @@ docker run -d \
 ## ⚙️ Configuration
 
 ### MCP Client Configuration
+
+#### Option 1: NPM Installation Configuration
 Add to your MCP client configuration file:
 
 ```json
@@ -140,6 +157,7 @@ Add to your MCP client configuration file:
     "obsidian-mcp": {
       "command": "npx",
       "args": [
+        "-y",
         "@jianruidutong/obsidian-mcp"
       ],
       "env": {
@@ -151,6 +169,52 @@ Add to your MCP client configuration file:
   }
 }
 ```
+
+#### Option 2: Source Installation Configuration
+For local source installation:
+
+```json
+{
+  "mcpServers": {
+    "obsidian-mcp": {
+      "command": "node",
+      "args": [
+        "/path/to/obsidian-mcp/build/index.js"
+      ],
+      "env": {
+        "OBSIDIAN_VAULT_PATH": "/path/to/your/vault",
+        "OBSIDIAN_API_TOKEN": "your_api_token",
+        "OBSIDIAN_API_PORT": "27123"
+      }
+    }
+  }
+}
+```
+
+#### Option 3: Docker Installation Configuration
+For Docker deployment:
+
+```json
+{
+  "mcpServers": {
+    "obsidian-mcp": {
+      "command": "docker",
+      "args": [
+        "exec",
+        "-i",
+        "obsidian-mcp-server",
+        "npm",
+        "start"
+      ],
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
+```
+
+**Note:** For Docker configuration, environment variables are set in the container through `.env` file or `docker-compose.yml`.
 
 ### Environment Variables
 | Variable | Description | Required | Default |

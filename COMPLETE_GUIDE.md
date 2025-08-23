@@ -66,42 +66,36 @@
 ## 🚀 三种安装方式
 
 ### 方式一：NPM远程安装 (推荐⭐)
-```bash
-# 全局安装
-npm install -g @jianruidutong/obsidian-mcp
 
-# 或使用npx（无需安装）
+**全局安装：**
+```bash
+npm install -g @jianruidutong/obsidian-mcp
+```
+
+**或使用npx（无需安装）：**
+```bash
 npx @jianruidutong/obsidian-mcp
 ```
 
 ### 方式二：本地源码安装
+
+**克隆并构建：**
 ```bash
-# 1. 克隆仓库
 git clone https://github.com/jianruidutong/obsidian-mcp.git
 cd obsidian-mcp
-
-# 2. 安装依赖并构建
 npm install
 npm run build
-
-# 3. 启动服务
 npm start
 ```
 
 ### 方式三：Docker容器安装
+
+**使用Docker Compose：**
 ```bash
-# 1. 克隆项目
 git clone https://github.com/jianruidutong/obsidian-mcp.git
 cd obsidian-mcp
-
-# 2. 配置环境变量
 cp .env.example .env
-# 编辑 .env 文件设置:
-# OBSIDIAN_VAULT_PATH=/path/to/your/vault
-# OBSIDIAN_API_TOKEN=your_api_token
-# OBSIDIAN_API_PORT=27123
-
-# 3. 启动容器
+# 编辑 .env 文件设置环境变量
 docker-compose up -d
 ```
 
@@ -109,7 +103,7 @@ docker-compose up -d
 
 ## ⚙️ MCP客户端配置
 
-### NPM安装配置
+### 方式一：NPM安装配置
 ```json
 {
   "mcpServers": {
@@ -126,7 +120,7 @@ docker-compose up -d
 }
 ```
 
-### 源码安装配置
+### 方式二：源码安装配置
 ```json
 {
   "mcpServers": {
@@ -143,7 +137,7 @@ docker-compose up -d
 }
 ```
 
-### Docker安装配置
+### 方式三：Docker安装配置
 ```json
 {
   "mcpServers": {
