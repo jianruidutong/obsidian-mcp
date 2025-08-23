@@ -8,9 +8,21 @@
 
 ## 🚀 Overview
 
-The **Enhanced Obsidian MCP Server** is a powerful Model Context Protocol (MCP) server that provides seamless integration between AI models and Obsidian knowledge bases. This enhanced version includes **25 advanced tools** that enable intelligent knowledge management, automated content analysis, and smart linking capabilities.
+The **Enhanced Obsidian MCP Server** is a powerful Model Context Protocol (MCP) server designed for seamless integration between AI models and Obsidian knowledge bases. Provides **25 powerful tools** for intelligent knowledge management, automated content analysis, and smart linking capabilities.
 
-### ✨ What's New in v2.0.0
+### ✨ Core Features
+- 🔗 **Seamless Obsidian Integration:** Direct access to Obsidian knowledge base through MCP protocol
+- 📝 **Complete Note Management:** Read, create, update, and delete notes with advanced text replacement features
+- 📁 **Folder Operations:** Create, rename, move, and delete folders with full hierarchy support
+- 🔍 **Intelligent Search:** Full-text search across all file types with smart scoring
+- 🤖 **AI Analysis:** Revolutionary strategic insights using TF-IDF framework
+- 🔗 **Auto Backlink Generation:** Revolutionary intelligent detection of note names and conversion to wikilinks
+- ⚡ **Precise Editing:** Advanced PATCH operations with heading and block-level positioning
+- 🚀 **Dual API Strategy:** Obsidian REST API combined with file system fallback for maximum reliability
+- 🎯 **Context Optimization:** Intelligent content summarization for LLM context length management
+- 📊 **Batch Processing:** Efficient bulk operations with progress tracking
+
+### ✨ New Features in v2.0.0
 - 🧠 **15 New AI-Enhanced Tools** for intelligent content analysis
 - 🔗 **Smart Auto-Linking** with advanced pattern recognition
 - 📊 **Knowledge Graph Generation** for visualizing note relationships
