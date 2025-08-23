@@ -1,6 +1,9 @@
 # Complete Installation Guide
 
-This guide provides step-by-step instructions for installing and configuring the Enhanced Obsidian MCP Server.
+This guide provides **step-by-step installation instructions** for the Enhanced Obsidian MCP Server. Choose your preferred installation method and follow the detailed instructions.
+
+> 📋 **Quick Overview**: For a brief project overview, see [README.md](./README.md)  
+> 🔧 **Configuration Help**: For configuration details, see [Configuration Reference](./docs/configuration.md)
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)

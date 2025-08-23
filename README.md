@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/Node.js-%E2%89%A516.0.0-brightgreen)](https://nodejs.org/)
 
-[English](./README.md) | [中文](./README.zh.md) | [📚 Complete Installation Guide](./COMPLETE_GUIDE.md)
+[English](./README.md) | [中文](./README.zh.md)
 
 ## 🚀 Overview
 
@@ -99,67 +99,28 @@ npm start
 
 ### Option 3: Docker Installation
 
-#### Using Docker Compose (Recommended)
-
-**Clone the project:**
+**Quick start with Docker:**
 ```bash
 git clone https://github.com/jianruidutong/obsidian-mcp.git
 cd obsidian-mcp
-```
-
-**Configure environment:**
-```bash
 cp .env.example .env
-nano .env
-```
-
-**Start container:**
-```bash
+# Edit .env with your vault settings
 docker-compose up -d
 ```
 
-.env file example:
-```bash
-OBSIDIAN_VAULT_PATH=/path/to/your/vault
-OBSIDIAN_API_TOKEN=your_api_token_here
-OBSIDIAN_API_PORT=27123
-```
-
-#### Using Docker Commands
-
-**Build Docker image:**
-```bash
-docker build -t obsidian-mcp .
-```
-
-**Run container:**
-```bash
-docker run -d \
-  --name obsidian-mcp \
-  --network host \
-  -e OBSIDIAN_VAULT_PATH=/path/to/your/vault \
-  -e OBSIDIAN_API_TOKEN=your_token \
-  -e OBSIDIAN_API_PORT=27123 \
-  -v /path/to/your/vault:/path/to/your/vault \
-  obsidian-mcp
-```
+> 📚 **For detailed installation instructions, see [Installation Guide](./INSTALLATION.md)**
 
 ## ⚙️ Configuration
 
 ### MCP Client Configuration
 
 #### Option 1: NPM Installation Configuration
-Add to your MCP client configuration file:
-
 ```json
 {
   "mcpServers": {
     "obsidian-mcp": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@jianruidutong/obsidian-mcp"
-      ],
+      "args": ["-y", "@jianruidutong/obsidian-mcp"],
       "env": {
         "OBSIDIAN_VAULT_PATH": "/path/to/your/vault",
         "OBSIDIAN_API_TOKEN": "your_api_token",
@@ -171,16 +132,12 @@ Add to your MCP client configuration file:
 ```
 
 #### Option 2: Source Installation Configuration
-For local source installation:
-
 ```json
 {
   "mcpServers": {
     "obsidian-mcp": {
       "command": "node",
-      "args": [
-        "/path/to/obsidian-mcp/build/index.js"
-      ],
+      "args": ["/path/to/obsidian-mcp/build/index.js"],
       "env": {
         "OBSIDIAN_VAULT_PATH": "/path/to/your/vault",
         "OBSIDIAN_API_TOKEN": "your_api_token",
@@ -192,8 +149,6 @@ For local source installation:
 ```
 
 #### Option 3: Docker Installation Configuration
-For Docker deployment:
-
 ```json
 {
   "mcpServers": {
@@ -201,7 +156,7 @@ For Docker deployment:
       "command": "docker",
       "args": [
         "exec",
-        "-i",
+        "-i", 
         "obsidian-mcp-server",
         "npm",
         "start"
@@ -213,15 +168,16 @@ For Docker deployment:
   }
 }
 ```
-
-**Note:** For Docker configuration, environment variables are set in the container through `.env` file or `docker-compose.yml`.
+**Note:** For Docker, environment variables are configured in `.env` file or `docker-compose.yml`.
 
 ### Environment Variables
 | Variable | Description | Required | Default |
-|----------|-------------|----------|---------|
+|----------|-------------|----------|----------|
 | `OBSIDIAN_VAULT_PATH` | Path to your Obsidian vault | ✅ Yes | - |
 | `OBSIDIAN_API_TOKEN` | Local REST API token | ✅ Yes | - |
 | `OBSIDIAN_API_PORT` | API port number | 🔧 Recommended | 27123 |
+
+> 🔧 **For all configuration options, see [Configuration Reference](./docs/configuration.md)**
 
 ## 📋 Prerequisites
 
@@ -238,10 +194,10 @@ For Docker deployment:
 
 ## 📚 Documentation
 
-- [📖 Complete Installation Guide](./INSTALLATION.md)
-- [🔧 Configuration Reference](./docs/configuration.md)
-- [🛠️ API Documentation](./docs/api.md)
-- [🚀 Usage Examples](./docs/examples.md)
+- [📖 Installation Guide](./INSTALLATION.md) - Complete installation instructions for all methods
+- [🔧 Configuration Reference](./docs/configuration.md) - Detailed configuration options and troubleshooting
+- [🛠️ API Documentation](./docs/api.md) - Complete API reference for all 25 tools
+- [🚀 Usage Examples](./docs/examples.md) - Practical examples and real-world scenarios
 
 ## 🤝 Contributing
 
@@ -271,6 +227,8 @@ npm run dev
 **Environment variables not working:**
 - Use the `OBSIDIAN_` prefix for all environment variables
 - Restart your MCP client after configuration changes
+
+> 🔍 **For detailed troubleshooting, see [Configuration Reference](./docs/configuration.md)**
 
 ## 📄 License
 
