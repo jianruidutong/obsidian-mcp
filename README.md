@@ -22,49 +22,55 @@ The **Enhanced Obsidian MCP Server** is a powerful Model Context Protocol (MCP) 
 ## 🛠️ Complete Tool Suite (25 Tools)
 
 ### 📚 **Core Note Management (10 Tools)**
-| Tool | Description | Use Case |
-|------|-------------|----------|
-| `list_notes` | List all notes in vault with optional folder filtering | Browse and organize content |
-| `read_note` | Read individual note content | Content retrieval and analysis |
-| `read_multiple_notes` | Batch read multiple notes simultaneously | Efficient bulk operations |
-| `create_note` | Create new notes with content | Content creation workflows |
-| `update_note` | Advanced content editing with precise positioning | Targeted content updates |
-| `delete_note` | Remove notes from vault | Content cleanup |
-| `move_note` | Rename or relocate notes | Organization and restructuring |
-| `manage_folder` | Full folder operations (create/rename/move/delete) | Vault structure management |
-| `search_vault` | Full-text search across all content | Information discovery |
-| `auto_backlink_vault` | Intelligent auto-linking with pattern recognition | Automated relationship building |
+
+#### 📄 **Note Operations**
+| Tool | Description | Detailed Functionality |
+|------|-------------|------------------------|
+| `list_notes` | List all notes in vault with optional folder filtering | Browse vault contents, filter by specific folders, get note metadata (size, dates, paths) |
+| `read_note` | Read individual note content | Retrieve complete note content with metadata, file statistics, and modification history |
+| `read_multiple_notes` | Batch read multiple notes simultaneously | Efficiently load multiple notes at once, perfect for content analysis or bulk operations |
+| `create_note` | Create new notes with content | Generate new markdown files with specified content, automatic directory creation |
+| `update_note` | Advanced content editing with precise positioning | Edit notes with surgical precision - replace text, insert at specific positions, delete sections |
+| `delete_note` | Remove notes from vault | Safely delete notes with confirmation, maintains vault integrity |
+| `move_note` | Rename or relocate notes | Move notes between folders, rename files, automatic link updates |
+
+#### 📁 **Folder & Organization**
+| Tool | Description | Detailed Functionality |
+|------|-------------|------------------------|
+| `manage_folder` | Full folder operations (create/rename/move/delete) | Complete folder management - create nested structures, reorganize vault hierarchy |
+| `search_vault` | Full-text search across all content | Powerful search with regex support, context snippets, relevance scoring |
+| `auto_backlink_vault` | Intelligent auto-linking with pattern recognition | Scan entire vault, detect note names in content, convert to [[wikilinks]] automatically |
 
 ### 🏷️ **Tag Management System (3 Tools)**
-| Tool | Description | Advanced Features |
-|------|-------------|-------------------|
-| `add_tags` | Add multiple tags to notes | Bulk tagging operations |
-| `list_tags` | List all tags with usage statistics | Tag analytics and insights |
-| `search_by_tags` | Advanced tag-based search with AND/OR operators | Complex filtering |
+| Tool | Description | Detailed Functionality |
+|------|-------------|------------------------|
+| `add_tags` | Add multiple tags to notes | Insert hashtags into note frontmatter or content, support for nested tags (e.g., #project/web) |
+| `list_tags` | List all tags with usage statistics | Comprehensive tag inventory with usage counts, sorting options, tag hierarchy analysis |
+| `search_by_tags` | Advanced tag-based search with AND/OR operators | Complex tag queries - find notes with specific tag combinations, Boolean logic support |
 
 ### 📝 **Template System (4 Tools)**
-| Tool | Description | Smart Features |
-|------|-------------|----------------|
-| `create_template` | Create reusable note templates with variables | Dynamic content generation |
-| `list_templates` | Browse available templates | Template management |
-| `apply_template` | Apply templates with variable substitution | Automated note creation |
-| `delete_template` | Remove unused templates | Template cleanup |
+| Tool | Description | Detailed Functionality |
+|------|-------------|------------------------|
+| `create_template` | Create reusable note templates with variables | Design dynamic templates with {{variables}}, support for dates, titles, custom placeholders |
+| `list_templates` | Browse available templates | View all saved templates with metadata, usage statistics, and variable information |
+| `apply_template` | Apply templates with variable substitution | Generate new notes from templates, automatic variable replacement, custom value injection |
+| `delete_template` | Remove unused templates | Clean up template library, maintain template organization |
 
 ### 🧠 **AI Content Analysis (4 Tools)**
-| Tool | Description | AI Technology |
-|------|-------------|---------------|
-| `extract_keywords` | Extract key terms using TF-IDF algorithm | Statistical analysis |
-| `generate_summary` | Create intelligent content summaries | Natural language processing |
-| `suggest_tags` | AI-powered tag recommendations | Content understanding |
-| `find_similar_notes` | Discover similar content using cosine similarity | Semantic analysis |
+| Tool | Description | Detailed Functionality |
+|------|-------------|------------------------|
+| `extract_keywords` | Extract key terms using TF-IDF algorithm | Identify important keywords and phrases, statistical relevance scoring, configurable result count |
+| `generate_summary` | Create intelligent content summaries | Automatic text summarization, extractive summary generation, customizable length |
+| `suggest_tags` | AI-powered tag recommendations | Analyze content and suggest relevant tags, learn from existing tagging patterns |
+| `find_similar_notes` | Discover similar content using cosine similarity | Content-based similarity matching, semantic analysis, threshold-based filtering |
 
 ### 📊 **Knowledge Graph & Analytics (4 Tools)**
-| Tool | Description | Visualization Ready |
-|------|-------------|-------------------|
-| `analyze_note_relationships` | Comprehensive relationship mapping | Network analysis |
-| `generate_knowledge_graph` | Export graph data for visualization tools | Cytoscape/D3.js compatible |
-| `find_orphan_notes` | Identify isolated content | Content audit |
-| `suggest_connections` | AI-powered connection recommendations | Relationship discovery |
+| Tool | Description | Detailed Functionality |
+|------|-------------|------------------------|
+| `analyze_note_relationships` | Comprehensive relationship mapping | Map connections between notes, analyze link patterns, identify knowledge clusters |
+| `generate_knowledge_graph` | Export graph data for visualization tools | Generate network data in JSON/Cytoscape formats, node/edge definitions, ready for D3.js/Gephi |
+| `find_orphan_notes` | Identify isolated content | Detect notes without links, find disconnected content, vault completeness analysis |
+| `suggest_connections` | AI-powered connection recommendations | Recommend potential links based on content similarity, discover hidden relationships |
 
 ## 🚀 Quick Start
 
@@ -130,6 +136,78 @@ Add to your MCP client configuration file:
 4. Ensure the plugin is enabled
 
 ## 🔧 Advanced Usage Examples
+
+### 📄 Basic Note Operations
+```javascript
+// List all notes in a specific folder
+const notes = await mcp.call('list_notes', {
+  folder: 'projects/web-development'
+});
+
+// Read a specific note
+const noteContent = await mcp.call('read_note', {
+  path: 'daily/2024-01-15.md'
+});
+
+// Create a new note
+await mcp.call('create_note', {
+  path: 'ideas/new-project-idea.md',
+  content: '# New Project Idea\n\nThis is a great idea for...'
+});
+
+// Update existing note content
+await mcp.call('update_note', {
+  path: 'daily/2024-01-15.md',
+  edits: [
+    {
+      type: 'replace',
+      search: 'old text',
+      replace: 'new updated text'
+    }
+  ]
+});
+
+// Move/rename a note
+await mcp.call('move_note', {
+  sourcePath: 'old-location/note.md',
+  destinationPath: 'new-location/renamed-note.md'
+});
+```
+
+### 📁 Folder Management
+```javascript
+// Create a new folder structure
+await mcp.call('manage_folder', {
+  operation: 'create',
+  path: 'projects/new-project/docs'
+});
+
+// Search across entire vault
+const searchResults = await mcp.call('search_vault', {
+  query: 'machine learning'
+});
+```
+
+### 🏷️ Tag Operations
+```javascript
+// Add tags to a note
+await mcp.call('add_tags', {
+  path: 'projects/web-app.md',
+  tags: ['#project', '#web-development', '#javascript']
+});
+
+// List all tags with usage statistics
+const tags = await mcp.call('list_tags', {
+  sortBy: 'count',
+  limit: 50
+});
+
+// Find notes by specific tags
+const taggedNotes = await mcp.call('search_by_tags', {
+  tags: ['project', 'web-development'],
+  operator: 'AND'
+});
+```
 
 ### Smart Auto-Linking
 ```javascript
