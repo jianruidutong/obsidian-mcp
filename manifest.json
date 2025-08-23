@@ -1,0 +1,181 @@
+{
+  "dxt_version": "0.1",
+  "name": "obsidian-mcp",
+  "display_name": "Enhanced Obsidian MCP Server",
+  "version": "2.0.0",
+  "description": "Enhanced MCP server with 25 advanced AI tools for intelligent Obsidian knowledge management",
+  "long_description": "The Enhanced Obsidian MCP Server provides 25 advanced tools for AI-powered knowledge management. NEW in v2.0.0: 15 additional AI-enhanced tools including smart auto-linking, knowledge graph generation, content analysis with TF-IDF, template system, advanced tag management, and intelligent content recommendations. Features comprehensive note management, automated relationship discovery, and visualization-ready knowledge graphs.",
+  "author": {
+    "name": "JianRuiDuTong Team"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jianruidutong/obsidian-mcp"
+  },
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "build/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/build/index.js"
+      ],
+      "env": {
+        "NODE_ENV": "production",
+        "OBSIDIAN_VAULT_PATH": "${user_config.vault_path}",
+        "OBSIDIAN_API_TOKEN": "${user_config.api_token}",
+        "OBSIDIAN_API_PORT": "${user_config.api_port}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "list_notes",
+      "description": "List all notes in the Obsidian vault with optional folder filtering"
+    },
+    {
+      "name": "read_note", 
+      "description": "Read the content of a note in the Obsidian vault"
+    },
+    {
+      "name": "read_multiple_notes",
+      "description": "Read content from multiple notes simultaneously for batch operations"
+    },
+    {
+      "name": "create_note",
+      "description": "Create a new note in the Obsidian vault with specified content"
+    },
+    {
+      "name": "update_note",
+      "description": "Update note content with advanced editing capabilities and precise positioning"
+    },
+    {
+      "name": "delete_note",
+      "description": "Delete a note from the Obsidian vault"
+    },
+    {
+      "name": "move_note",
+      "description": "Move or rename a note to a new location in the vault"
+    },
+    {
+      "name": "manage_folder",
+      "description": "Complete folder management: create, rename, move, or delete folders"
+    },
+    {
+      "name": "search_vault",
+      "description": "Advanced full-text search across all vault content"
+    },
+    {
+      "name": "auto_backlink_vault",
+      "description": "🔗 Intelligent auto-linking: detect note names and convert to wikilinks automatically"
+    },
+    {
+      "name": "add_tags",
+      "description": "Add multiple tags to notes with smart formatting"
+    },
+    {
+      "name": "list_tags",
+      "description": "List all tags in vault with usage statistics and sorting options"
+    },
+    {
+      "name": "search_by_tags",
+      "description": "Advanced tag-based search with AND/OR operators"
+    },
+    {
+      "name": "create_template",
+      "description": "📝 Create reusable note templates with variable substitution"
+    },
+    {
+      "name": "list_templates",
+      "description": "Browse and manage available note templates"
+    },
+    {
+      "name": "apply_template",
+      "description": "Apply templates to create new notes with dynamic content"
+    },
+    {
+      "name": "delete_template",
+      "description": "Remove unused templates from the system"
+    },
+    {
+      "name": "extract_keywords",
+      "description": "🧠 AI-powered keyword extraction using TF-IDF algorithm"
+    },
+    {
+      "name": "generate_summary",
+      "description": "🧠 Generate intelligent content summaries automatically"
+    },
+    {
+      "name": "suggest_tags",
+      "description": "🧠 AI-powered tag suggestions based on content analysis"
+    },
+    {
+      "name": "find_similar_notes",
+      "description": "🧠 Find content-similar notes using cosine similarity"
+    },
+    {
+      "name": "analyze_note_relationships",
+      "description": "📊 Comprehensive analysis of note relationships and connections"
+    },
+    {
+      "name": "generate_knowledge_graph",
+      "description": "📊 Generate visualization-ready knowledge graph data"
+    },
+    {
+      "name": "find_orphan_notes",
+      "description": "📊 Identify isolated notes with no connections"
+    },
+    {
+      "name": "suggest_connections",
+      "description": "📊 AI-powered suggestions for potential note connections"
+    }
+  ],
+  "user_config": {
+    "vault_path": {
+      "type": "string",
+      "title": "Vault Path",
+      "description": "Absolute path to your Obsidian vault (e.g., C:/Users/YourName/Documents/MyVault)",
+      "required": true,
+      "placeholder": "/path/to/your/obsidian/vault"
+    },
+    "api_token": {
+      "type": "string",
+      "title": "API Token",
+      "description": "API token from Obsidian Local REST API plugin (generate in plugin settings)",
+      "required": true,
+      "placeholder": "Generate token in Obsidian Local REST API settings"
+    },
+    "api_port": {
+      "type": "string",
+      "title": "API Port",
+      "description": "Port for Obsidian Local REST API (default: 27123)",
+      "default": "27123",
+      "required": false,
+      "placeholder": "27123"
+    }
+  },
+  "keywords": [
+    "obsidian",
+    "mcp",
+    "knowledge-base",
+    "notes",
+    "markdown",
+    "productivity",
+    "ai-enhanced",
+    "smart-linking",
+    "knowledge-graph",
+    "content-analysis",
+    "template-system",
+    "intelligent-tagging"
+  ],
+  "license": "MIT",
+  "capabilities": {
+    "ai_enhanced": true,
+    "knowledge_graphs": true,
+    "smart_linking": true,
+    "content_analysis": true,
+    "template_system": true,
+    "advanced_search": true
+  }
+}
