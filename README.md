@@ -22,7 +22,7 @@ The **Enhanced Obsidian MCP Server** is a powerful Model Context Protocol (MCP) 
 - 🎯 **Context Optimization:** Intelligent content summarization for LLM context length management
 - 📊 **Batch Processing:** Efficient bulk operations with progress tracking
 
-### ✨ New Features in v2.0.0
+### ✨ New Features
 - 🧠 **15 New AI-Enhanced Tools** for intelligent content analysis
 - 🔗 **Smart Auto-Linking** with advanced pattern recognition
 - 📊 **Knowledge Graph Generation** for visualizing note relationships
