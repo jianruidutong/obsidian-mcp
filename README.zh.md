@@ -1,10 +1,24 @@
 # Obsidian MCP 增强版服务器 - 25个AI智能工具
 
+[![npm version](https://badge.fury.io/js/@jianruidutong%2Fobsidian-mcp.svg)](https://badge.fury.io/js/@jianruidutong%2Fobsidian-mcp)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/Node.js-%E2%89%A516.0.0-brightgreen)](https://nodejs.org/)
+
 [English](./README.md) | 中文
 
 这个项目实现了一个增强版 Model Context Protocol (MCP) 服务器，专为AI模型与Obsidian知识库的无缝集成而设计。提供**25个强大工具**，实现智能化知识管理、自动化内容分析和智能链接功能。
-
-### ✨ v2.0.0 新特性
+### ✨ 基础特性
+- 🔗 **无缝 Obsidian 集成：**通过 MCP 协议直接访问 Obsidian 知识库
+- 📝 **完整的笔记管理：**使用高级文本替换功能阅读、创建、更新和删除笔记
+- 📁 **文件夹操作：**创建、重命名、移动和删除文件夹，并支持完整的层次结构
+- 🔍 **智能搜索：**通过智能评分对所有文件类型进行全文搜索
+- 🤖 **人工智能分析：**使用三难原则框架的全新战略洞察
+- 🔗 **自动反向链接生成：**全新智能检测笔记名称并将其转换为 wikilinks
+- ⚡ **精确编辑：**具有标题和块级定位的高级 PATCH 操作
+- 🚀 **双 API 策略：**Obsidian REST API 结合文件系统回退，实现最大可靠性
+- 🎯 **上下文优化：**用于 LLM 上下文长度管理的智能内容摘要
+- 📊 **批处理：**高效的批量操作，并带有进度跟踪
+### ✨ v2.0.0新特性
 - 🧠 **15个全新AI增强工具** 实现智能内容分析
 - 🔗 **智能自动链接** 具备高级模式识别功能
 - 📊 **知识图谱生成** 可视化笔记关系网络
