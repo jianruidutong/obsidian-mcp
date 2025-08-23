@@ -35,11 +35,11 @@
   "description": "Enhanced Obsidian MCP Server with 25 Advanced AI Tools - Intelligent Knowledge Management with Smart Analysis, Auto-Linking, and Knowledge Graph Generation",
   "repository": {
     "type": "git",
-    "url": "https://github.com/newtype-01/obsidian-mcp.git"
+    "url": "https://github.com/jianruidutong/obsidian-mcp.git"
   },
-  "homepage": "https://github.com/newtype-01/obsidian-mcp",
+  "homepage": "https://github.com/jianruidutong/obsidian-mcp",
   "bugs": {
-    "url": "https://github.com/newtype-01/obsidian-mcp/issues"
+    "url": "https://github.com/jianruidutong/obsidian-mcp/issues"
   },
   "engines": {
     "node": ">=16.0.0"
