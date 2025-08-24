@@ -1,0 +1,75 @@
+{
+  "name": "@jianruidutong/obsidian-mcp",
+  "version": "2.0.1",
+  "main": "build/index.js",
+  "type": "module",
+  "bin": {
+    "obsidian-mcp": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev": "ts-node --esm src/index.ts",
+    "generate-dxt": "npm run build && node generate-dxt.js",
+    "prepublishOnly": "npm run build",
+    "docker:build": "docker build -t obsidian-mcp .",
+    "docker:run": "docker-compose up -d",
+    "docker:stop": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "keywords": [
+    "obsidian",
+    "mcp",
+    "model-context-protocol",
+    "knowledge-base",
+    "notes",
+    "markdown",
+    "productivity",
+    "ai",
+    "claude",
+    "intelligent-analysis",
+    "knowledge-graph",
+    "ai-enhanced",
+    "smart-linking",
+    "content-analysis"
+  ],
+  "author": "JianRuiDuTong Team",
+  "license": "MIT",
+  "description": "Enhanced Obsidian MCP Server with 25 Advanced AI Tools - Intelligent Knowledge Management with Smart Analysis, Auto-Linking, and Knowledge Graph Generation",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jianruidutong/obsidian-mcp.git"
+  },
+  "homepage": "https://github.com/jianruidutong/obsidian-mcp",
+  "bugs": {
+    "url": "https://github.com/jianruidutong/obsidian-mcp/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "build/**/*",
+    "README.md",
+    "README.zh.md",
+    "LICENSE",
+    "manifest.json",
+    "INSTALLATION.md"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.1",
+    "@types/diff": "^7.0.2",
+    "archiver": "^7.0.1",
+    "axios": "^1.8.2",
+    "diff": "^8.0.2",
+    "dotenv": "^16.4.5",
+    "eventsource": "^4.0.0",
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2",
+    "path-browserify": "^1.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  }
+}
