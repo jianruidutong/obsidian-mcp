@@ -247,6 +247,7 @@ npm run dev
 - [Model Context Protocol](https://github.com/anthropics/model-context-protocol) by Anthropic
 - [Obsidian Local REST API](https://github.com/coddingtonbear/obsidian-local-rest-api) 插件
 - Obsidian社区提供的宝贵反馈和支持
+- 原项目 (https://github.com/newtype-01/obsidian-mcp)
 
 ## 📞 支持
 
