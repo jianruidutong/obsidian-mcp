@@ -1,6 +1,6 @@
 {
   "name": "@jianruidutong/obsidian-mcp",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "build/index.js",
   "type": "module",
   "bin": {
