@@ -251,6 +251,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Model Context Protocol](https://github.com/anthropics/model-context-protocol) by Anthropic
 - [Obsidian Local REST API](https://github.com/coddingtonbear/obsidian-local-rest-api) plugin
 - The Obsidian community for their invaluable feedback and support
+- The original project address: https://github.com/newtype-01/obsidian-mcp
 
 ## 📞 Support
 
