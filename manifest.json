@@ -2,7 +2,7 @@
   "dxt_version": "0.1",
   "name": "obsidian-mcp",
   "display_name": "Enhanced Obsidian MCP Server",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Enhanced MCP server with 25 advanced AI tools for intelligent Obsidian knowledge management",
   "long_description": "The Enhanced Obsidian MCP Server provides 25 advanced tools for AI-powered knowledge management. NEW in v2.0.0: 15 additional AI-enhanced tools including smart auto-linking, knowledge graph generation, content analysis with TF-IDF, template system, advanced tag management, and intelligent content recommendations. Features comprehensive note management, automated relationship discovery, and visualization-ready knowledge graphs.",
   "author": {
